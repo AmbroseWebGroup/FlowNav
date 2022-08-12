@@ -20,10 +20,16 @@ A responsive, cascading website navigation menu written in plain old HTML, JS an
 <link rel="stylesheet" href="./flownav/flownav.min.css" />
 ```
 
-1. Copy the below code and paste where you would like your navigation to be placed within your markup file's `<body>` tag
+1. Add this line of code  somewhere inside the `<body>` tag where you'd like the navigation menu to appear
 ```HTML
 <nav id="flownav"></nav>
 ```
+
+1. Add this line of code somewhere inside the `<body>` tag where you'd like the mobile menu button to appear
+```HTML
+<button id="flownav-hamburger"></button>
+```
+
 
 1. Edit the `navbar.json` file to contain your desired navigation layout based on the template provided. You can nest as many times as you want!
 ```json
@@ -43,6 +49,13 @@ A responsive, cascading website navigation menu written in plain old HTML, JS an
 - **Trailing commas in `navbar.json`:** Please make sure that you parse your JSON file before testing the system. If the file has trailing commas at the end of an array/dictionary, the JSON will not parse during the XMLHttpRequest and will throw an error making the navigation structure unreadable.
 
 ## Changelog
+
+### Alpha 1.1
+
+- Instead of a border separating menu levels, there is an inset box shadow on the child `<ul>` element
+- Navigation menu starts off hidden if the screen resolution is less than `700px`
+- Navigation menu toggles when you click the newly implemented `#flownav-hamburger` button
+- Animation displays when the `#flownav-hamburger` button is clicked
 
 ### Alpha 1.0
 

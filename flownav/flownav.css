@@ -6,7 +6,7 @@
 	transition: opacity 0s !important;
 }
 
-#flownav, #flownav * {
+#flownav, #flownav *, #flownav-hamburger {
 	margin: 0;
 	padding: 0;
 	font-size: 1em;
@@ -25,29 +25,34 @@
 	user-select: none;
 }
 
-#flownav button {
+#flownav button, #flownav-hamburger {
 	cursor: pointer;
 }
 
 /* CUSTOM PROPERTIES */
 
-#flownav {
+#flownav, #flownav-hamburger {
 	--fn-ff: sans-serif;
 	--fn-fz: 1rem;
-	--fn-clr-600: hsl(200, 35%, 15%);
-	--fn-clr-400: hsl(200, 35%, 45%);
-	--fn-clr-200: hsl(200, 35%, 70%);
+
+	--fn-clr-fg: hsl(0deg, 0%, 0%);
+	--fn-clr-bg: hsl(102deg 42% 91%);
+	--fn-clr-acc: hsl(345deg 100% 25%);
+
+	--fn-shadow: inset 0 1em .75em -1em #0003;
 }
 
-/* STYLING */
+/* FLOWNAV STYLING */
 
 #flownav {
 	display: block;
+	position: relative;
 
 	width: 100%;
 
 	font-family: var(--fn-ff);
 	font-size: var(--fn-fz);
+	z-index: 999;
 }
 
 #flownav ul {
@@ -64,12 +69,13 @@
 	left: 0;
 	padding: 0 1em;
 
-	background-color: var(--fn-clr-200);
-	border-top: .1em solid #0008;
+	background-color: var(--fn-clr-bg);
 	opacity: 0;
+	box-shadow: var(--fn-shadow);
 
 	pointer-events: none;
 	animation: fn-fade-up .3s forwards;
+	z-index: initial;
 }
 
 #flownav li {
@@ -85,7 +91,7 @@
 	padding: .5em 1em;
 
 	background-color: transparent;
-	color: var(--fn-clr-600);
+	color: var(--fn-clr-fg);
 
 	transition-property: background-color, color;
 	transition-duration: .2s;
@@ -96,13 +102,14 @@
 #flownav button::after {
 	content: '\1401';
 	margin-left: .5em;
+	font-size: .8em;
 }
 
 /* ANCHOR AND BUTTON ACTIVE ANIMATIONS */
 
 #flownav a:hover, #flownav button:hover, #flownav .open > button {
-	background-color: var(--fn-clr-600);
-	color: var(--fn-clr-200);
+	background-color: var(--fn-clr-acc);
+	color: var(--fn-clr-bg);
 }
 
 /* OPENED NAV ITEM */
@@ -112,7 +119,7 @@
 	pointer-events: auto;
 }
 
-/* FIX FOR TOP LEVEL NAV ITEM HIDDEN */
+/* FIX FOR TOP LEVEL EXCEPTIONS */
 
 #flownav > ul {
 	position: relative;
@@ -120,28 +127,94 @@
 	animation: none;
 	opacity: 1;
 	border-top: 0;
+	box-shadow: none;
 
 	pointer-events: auto;
+}
+
+/* FLOWNAV HAMBURGER STYLING */
+
+#flownav-hamburger {
+	display: none;
+	position: relative;
+
+	width: 3em;
+	height: 2em;
+	margin: .5em auto;
+
+	border: 0;
+	outline: 0;
+
+	font-size: var(--fn-fz);
+	color: transparent;
+	background-color: transparent;
+}
+
+/* OPEN */
+
+#flownav-hamburger span {
+	position: absolute;
+
+	width: 100%;
+	height: 20%;
+
+	top: 50%;
+	left: 0;
+	transform-origin: center;
+	transition-property: transform, top, opacity;
+	transition-duration: .3s;
+
+	border-radius: 100px;
+	background-color: var(--fn-clr-acc);
+	opacity: 0;
+}
+
+#flownav-hamburger span:first-child {
+	transform: translateY(-50%) rotateZ(-45deg);
+	opacity: 1;
+}
+
+#flownav-hamburger span:last-child {
+	transform: translateY(-50%) rotateZ(45deg);
+	opacity: 1;
+}
+
+/* CLOSED */
+
+#flownav-hamburger.hidden span {
+	top: 50%;
+	transform: translateY(-50%) rotateZ(0);
+	opacity: 1;
+}
+
+#flownav-hamburger.hidden span:first-child {
+	top:0;
+	transform: translateY(0) rotateZ(0);
+}
+
+#flownav-hamburger.hidden span:last-child {
+	top:100%;
+	transform: translateY(-100%) rotateZ(0);
 }
 
 /* ANIMATION DEFINITIONS */
 
 @keyframes fn-fade-down {
 	0% {
-		top: 50%;
+		transform: translateY(-100%);
 		opacity: 0;
 	} 100% {
-		top: 100%;
+		transform: translateY(0%);
 		opacity: 1;
 	}
 }
 
 @keyframes fn-fade-up {
 	0% {
-		top: 100%;
+		transform: translateY(0%);
 		opacity: 1;
 	} 100% {
-		top: 50%;
+		transform: translateY(-100%);
 		opacity: 0;
 	}
 }
@@ -149,4 +222,11 @@
 /* MEDIA QUERY */
 
 @media (max-width: 700px) {
+	#flownav-hamburger {
+		display: block !important;
+	}
+
+	#flownav.hidden {
+		display: none;
+	}
 }
