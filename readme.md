@@ -1,6 +1,6 @@
 # FlowNav
 
-A responsive, cascading website navigation menu written in plain old HTML, JS and CSS to work on all screen resolutions
+A prebuilt cascading navigation menu in vanilla HTML, CSS & JS with recursively defined dropdowns and hyperlinks, purpose-built to support all modern browsers and all scren sizes and written to be customisable in style, contact and functionality.
 
 ## Implementation
 
