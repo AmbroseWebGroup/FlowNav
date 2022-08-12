@@ -1,0 +1,152 @@
+/* CSS RESET */
+
+#flownav.preload, #flownav.preload * {
+	animation-duration: 0s !important;
+	-webkit-animation-duration: 0s !important;
+	transition: opacity 0s !important;
+}
+
+#flownav, #flownav * {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	box-sizing: border-box;
+	outline: 1px solid #f004;
+	list-style-type: none;
+	text-decoration: none;
+	color: inherit;
+	border: 0;
+	outline: 0;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#flownav button {
+	cursor: pointer;
+}
+
+/* CUSTOM PROPERTIES */
+
+#flownav {
+	--fn-ff: sans-serif;
+	--fn-fz: 1rem;
+	--fn-clr-600: hsl(200, 35%, 15%);
+	--fn-clr-400: hsl(200, 35%, 45%);
+	--fn-clr-200: hsl(200, 35%, 70%);
+}
+
+/* STYLING */
+
+#flownav {
+	display: block;
+
+	width: 100%;
+
+	font-family: var(--fn-ff);
+	font-size: var(--fn-fz);
+}
+
+#flownav ul {
+	display: flex;
+	position: absolute;
+
+	flex-direction: row;
+	flex-wrap: wrap;
+	flex: 1 1 auto;
+	column-gap: 1em;
+
+	width: 100%;
+	top: 100%;
+	left: 0;
+	padding: 0 1em;
+
+	background-color: var(--fn-clr-200);
+	border-top: .1em solid #0008;
+	opacity: 0;
+
+	pointer-events: none;
+	animation: fn-fade-up .3s forwards;
+}
+
+#flownav li {
+	display: flex;
+	flex-grow: 1;
+
+	padding: .5em;
+}
+
+#flownav a, #flownav button {
+	display: inline-block;
+	margin: auto;
+	padding: .5em 1em;
+
+	background-color: transparent;
+	color: var(--fn-clr-600);
+
+	transition-property: background-color, color;
+	transition-duration: .2s;
+}
+
+/* ARROWS FOR DROPDOWN BUTTONS */
+
+#flownav button::after {
+	content: '\1401';
+	margin-left: .5em;
+}
+
+/* ANCHOR AND BUTTON ACTIVE ANIMATIONS */
+
+#flownav a:hover, #flownav button:hover, #flownav .open > button {
+	background-color: var(--fn-clr-600);
+	color: var(--fn-clr-200);
+}
+
+/* OPENED NAV ITEM */
+
+#flownav .open > ul {
+	animation: fn-fade-down .3s forwards;
+	pointer-events: auto;
+}
+
+/* FIX FOR TOP LEVEL NAV ITEM HIDDEN */
+
+#flownav > ul {
+	position: relative;
+
+	animation: none;
+	opacity: 1;
+	border-top: 0;
+
+	pointer-events: auto;
+}
+
+/* ANIMATION DEFINITIONS */
+
+@keyframes fn-fade-down {
+	0% {
+		top: 50%;
+		opacity: 0;
+	} 100% {
+		top: 100%;
+		opacity: 1;
+	}
+}
+
+@keyframes fn-fade-up {
+	0% {
+		top: 100%;
+		opacity: 1;
+	} 100% {
+		top: 50%;
+		opacity: 0;
+	}
+}
+
+/* MEDIA QUERY */
+
+@media (max-width: 700px) {
+}
