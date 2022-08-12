@@ -4,6 +4,11 @@ window.addEventListener("load", (_) => {
 	fn = new FlowNav();
 }, false);
 
+window.addEventListener("resize", (_) => {
+	fn.openState = window.innerWidth < 700;
+	fn.toggleNav();
+}, false);
+
 class FlowNav {
 
 	constructor(_jsonUrl="./flownav/navbar.json") {
@@ -12,8 +17,8 @@ class FlowNav {
 		this.ham = this.renderHamburger();
 
 		this.domElt = document.getElementById("flownav");
-		this.openState = window.innerWidth >= 700;
-		this.initNav();
+		this.openState = window.innerWidth < 700;
+		this.toggleNav();
 		this.renderNav();
 
 		document.body.addEventListener("click", (_e) => {
@@ -91,18 +96,6 @@ class FlowNav {
 		}
 	}
 
-	initNav(_deviceType) {
-		this.domElt.classList.remove("hidden");
-		this.domElt.classList.add(
-			this.openState ? "preload" : "hidden"
-		);
-		if (this.openState) this.ham.classList.toggle("hidden");
-
-		setTimeout((_)=>{
-			this.domElt.classList.remove("preload");
-		}, 300);
-	}
-
 	toggleNav() {
 		this.openState = !this.openState;
 
@@ -110,7 +103,7 @@ class FlowNav {
 		this.domElt.classList.add(
 			this.openState ? "preload" : "hidden"
 		);
-		this.ham.classList.toggle("hidden");
+		this.ham.className = this.openState ? "" : "hidden";
 
 		setTimeout((_)=>{
 			this.domElt.classList.remove("preload");

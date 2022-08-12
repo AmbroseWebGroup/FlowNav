@@ -50,6 +50,10 @@ A prebuilt cascading navigation menu in vanilla HTML, CSS & JS with recursively 
 
 ## Changelog
 
+### Alpha 1.1.1
+
+- The navigation open state is no longer preserved when resizing the screen across the 700px threshold
+
 ### Alpha 1.1
 
 - Instead of a border separating menu levels, there is an inset box shadow on the child `<ul>` element
