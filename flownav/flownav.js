@@ -11,8 +11,11 @@ window.addEventListener("resize", (_) => {
 
 class FlowNav {
 
-	constructor(_jsonUrl="./flownav/navbar.json") {
-		this.jsonUrl = _jsonUrl;
+	constructor() {
+		let scriptPath = Array.from(
+			document.getElementsByTagName("script")
+		).slice(-1)[0].src;
+		this.jsonUrl = new URL("./navbar.json", scriptPath).pathname;
 
 		this.ham = this.renderHamburger();
 
