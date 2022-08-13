@@ -123,12 +123,13 @@
 
 #flownav > ul {
 	position: relative;
+	top: 0;
 
-	animation: none;
-	opacity: 1;
 	border-top: 0;
 	box-shadow: none;
 
+	opacity: 1;
+	animation: none;
 	pointer-events: auto;
 }
 

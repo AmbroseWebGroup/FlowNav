@@ -1,4 +1,5 @@
 let fn;
+let fnScript = document.currentScript;
 
 window.addEventListener("load", (_) => {
 	fn = new FlowNav();
@@ -12,10 +13,7 @@ window.addEventListener("resize", (_) => {
 class FlowNav {
 
 	constructor() {
-		let scriptPath = Array.from(
-			document.getElementsByTagName("script")
-		).slice(-1)[0].src;
-		this.jsonUrl = new URL("./navbar.json", scriptPath).pathname;
+		this.jsonUrl = new URL("./navbar.json", fnScript.src).pathname;
 
 		this.ham = this.renderHamburger();
 

@@ -50,6 +50,10 @@ A prebuilt cascading navigation menu in vanilla HTML, CSS & JS with recursively 
 
 ## Changelog
 
+### Alpha 1.1.3
+
+- **Bug Fix**: if there are scripts in the current document that are hard-coded, the code to get the relative `navbar.json` path would not run correctly.
+
 ### Alpha 1.1.2
 
 - The JSON path is now relative to the `flownav(.min).js` file meaning as long as this file and the `navbar.json` file are in the same directory, the JS & CSS will work in any document location relative to the root
