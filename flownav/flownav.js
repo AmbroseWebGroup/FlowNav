@@ -1,5 +1,5 @@
-let fn;
-let fnScript = document.currentScript;
+let fn, fnScript, fnRoot;
+fnScript = document.currentScript;
 
 window.addEventListener("load", (_) => {
 	fn = new FlowNav();
@@ -13,6 +13,7 @@ window.addEventListener("resize", (_) => {
 class FlowNav {
 
 	constructor() {
+		this.rootDir = fnRoot == undefined ? "." : fnRoot;
 		this.jsonUrl = new URL("./navbar.json", fnScript.src).pathname;
 
 		this.ham = this.renderHamburger();
@@ -57,12 +58,22 @@ class FlowNav {
 	}
 
 	// method to create the DOM for a single navItem and it's dropdown, if it has one
+	// There is some calculation to handle relative vs absolute references
 	generateNavItem(_indentation, _key, _json) {
 		if (typeof _json[_key] == "string") {
+			let href, target;
+			if (_json[_key].substr(0,1) == "/") {
+				href = this.rootDir + _json[_key];
+				target = "";
+			} else {
+				href = _json[_key];
+				target = "_blank";
+			}
+
 			return fn_ml("li", {}, [
 				fn_ml("a", {
-					href: _json[_key],
-					target: _json[_key].substring(0,4).toUpperCase() == "HTTP" ? "_blank" : ""
+					href: href,
+					target: target
 				}, _key)
 			]);
 		}
@@ -109,6 +120,13 @@ class FlowNav {
 		setTimeout((_)=>{
 			this.domElt.classList.remove("preload");
 		}, 300);
+	}
+
+	setRootDir(_path) {
+		this.rootDir = _path;
+		if (_path.substr(-1) == "/" || _path.substr(-1) == "\\") {
+			this.rootDir = _path.substr(0,_path.length-1);
+		}
 	}
 
 }

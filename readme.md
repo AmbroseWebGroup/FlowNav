@@ -20,6 +20,12 @@ A prebuilt cascading navigation menu in vanilla HTML, CSS & JS with recursively 
 <link rel="stylesheet" href="./flownav/flownav.min.css" />
 ```
 
+1. if the relative path from your HTML file to your root directory is not `.` (i.e. your links aren't relative to your page) then you'll need to execute the following code in a `<script>` tag to change the root directory
+```javascript
+// replace .. with the relative path to root
+fnRoot = "..";
+```
+
 1. Add this line of code  somewhere inside the `<body>` tag where you'd like the navigation menu to appear
 ```HTML
 <nav id="flownav"></nav>
@@ -31,11 +37,11 @@ A prebuilt cascading navigation menu in vanilla HTML, CSS & JS with recursively 
 ```
 
 
-1. Edit the `navbar.json` file to contain your desired navigation layout based on the template provided. You can nest as many times as you want!
+1. Edit the `navbar.json` file to contain your desired navigation layout based on the template provided. You can nest as many times as you want! **please note**: relative references should have a leading `/`
 ```json
 {
   "Top Item 1": {
-    "Sub Item 1": "./link-to-relative-file/",
+    "Sub Item 1": "/link-to-relative-directory/",
     "Sub Item 2": "http://linktosub.item/2"
   },
   "Top Item 2": "http://linktotop.item/2"
@@ -47,8 +53,14 @@ A prebuilt cascading navigation menu in vanilla HTML, CSS & JS with recursively 
 ## Known Issues
 
 - **Trailing commas in `navbar.json`:** Please make sure that you parse your JSON file before testing the system. If the file has trailing commas at the end of an array/dictionary, the JSON will not parse during the XMLHttpRequest and will throw an error making the navigation structure unreadable.
+- **Trailing slashes in `fnRoot`:** Please ensure that there is no trailing `/` or `\` when assigning a custom value to the `fnRoot` variable as this will result in hyperlinks with `//` or `\\` in them which may not process correctly in all browsers.
+- **Leading dot(s) or missing slash in `navbar.json`:** Relative references inside your `navbar.json` file need to start with a `/` and be relative to your defined `fnRoot`.
 
 ## Changelog
+
+### Alpha 1.1.4
+
+- The directory to which the relative navbar links originate from can now be changed using the `fnRoot` global variable.
 
 ### Alpha 1.1.3
 

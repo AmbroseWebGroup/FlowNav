@@ -1,24 +1,24 @@
 {
-  "Home": "./",
-  "About Us": "./about/",
-  "Our Team": "./team/",
+  "Home": "/",
+  "About Us": "/about/",
+  "Our Team": "/team/",
   "Portfolio": {
-    "Testimonials": "./portfolio/",
+    "Testimonials": "/portfolio/",
     "Reviews": "https://g.page/r/CZxcYmvsAttuEBA",
-    "Project Gallery": "./portfolio/#projects"
+    "Project Gallery": "/portfolio/#projects"
   },
   "Packages & Pricing": {
-    "Managed": "./packages/#managed",
-    "Standalone": "./packages/#standalone",
-    "More": "./packages/#misc"
+    "Managed": "/packages/#managed",
+    "Standalone": "/packages/#standalone",
+    "More": "/packages/#misc"
   },
-  "Guides & FAQs": "./coming-soon/",
+  "Guides & FAQs": "/coming-soon/",
   "Partners": {
-    "Company 1": "./partners/?p=company1",
-    "Company 2": "./partners/?p=company2",
-    "<b>Put Your Name Here!</b>": "./partners/?p=you"
+    "Company 1": "/partners/?p=company1",
+    "Company 2": "/partners/?p=company2",
+    "<b>Put Your Name Here!</b>": "/partners/?p=you"
   },
-  "Blog Posts": "./coming-soon/",
-  "Documents": "./coming-soon/",
-  "Contact": "./contact/"
+  "Blog Posts": "/coming-soon/",
+  "Documents": "/coming-soon/",
+  "Contact": "/contact/"
 }
